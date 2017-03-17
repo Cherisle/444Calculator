@@ -10,6 +10,7 @@ namespace _444Calculator
     {
         static void Main(string[] args)
         {
+            Console.ReadKey();
         }
     }
 }
