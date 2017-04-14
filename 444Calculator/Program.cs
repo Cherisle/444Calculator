@@ -56,6 +56,25 @@ namespace _444Calculator
             Console.Write("What is v? ");
             v = Console.ReadLine();
             s = "(" + x + "," + y + "i)+(" + u + "," + v + "i)";
+            //Console.WriteLine(s);
+            if (s.Contains("i"))
+            {
+                string[] sSubString = s.Split(',');
+                // [0] = (x
+                // [1] = yi)+(u
+                // [2] = vi)
+                sSubString[0] = sSubString[0].Trim('(');
+                sSubString[2] = sSubString[2].Trim(')');
+                // [0] = x
+                // [2] = vi             
+                string[] loc1SubString = sSubString[1].Split(new[] { ")+(" }, StringSplitOptions.None);
+                // [0] = yi
+                // [1] = u
+                Console.WriteLine(sSubString[0]);
+                Console.WriteLine(loc1SubString[0]);
+                Console.WriteLine(loc1SubString[1]);
+                Console.WriteLine(sSubString[2]);
+            }            
         }
 
         static void divFunction(string x, string y, string u, string v, string s)
