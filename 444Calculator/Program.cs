@@ -12,54 +12,95 @@ namespace _444Calculator
         {
             bool menuDone = false;
             string menuChoice = "";
-            Console.Write("This is the 444 Simple Complex Number Calculator.");
-            Console.WriteLine("What would you like to do?");
+            string x, y, u, v, s;
+            x = y = u = v = s = "";
+            Console.WriteLine("This is the 444 Simple Complex Number Calculator.");
+            Console.WriteLine("What would you like to do?(Options are case-sensitive)\n");
             while(!menuDone)
             {
-                Console.WriteLine("1. Add\n2. Div\n3. Mag\n4. Ang");
+                Console.WriteLine("add\ndiv\nmag\nang\n");
                 Console.WriteLine("Enter anything else to quit.");
-                ConsoleKeyInfo key = Console.ReadKey();
-                Console.WriteLine();
-                menuChoice = key.KeyChar.ToString();
+                menuChoice = Console.ReadLine();
+                Console.WriteLine(menuChoice);
                 switch(menuChoice)
                 {
-                    case "1":
-                        addFunction();
+                    case "add":
+                        addFunction(x, y, u, v, s);
                         break;
-                    case "2":
-                        divFunction();
+                    case "div":
+                        divFunction(x, y, u, v, s);
                         break;
-                    case "3":
-                        magFunction();
+                    case "mag":
+                        magFunction(x, y, u, v, s);
                         break;
-                    case "4":
-                        angFunction();
+                    case "ang":
+                        angFunction(x, y, u, v, s);
                         break;
                     default:
                         menuDone = true;
                         break;              
                 }
             }
+            Console.ReadKey();
         }
 
-        static void addFunction()
+        static void addFunction(string x, string y, string u, string v, string s)
         {
-
+            standardDisplay();
+            Console.Write("What is x? ");
+            x = Console.ReadLine();
+            Console.Write("What is y? ");
+            y = Console.ReadLine();
+            Console.Write("What is u? ");
+            u = Console.ReadLine();
+            Console.Write("What is v? ");
+            v = Console.ReadLine();
+            s = "(" + x + "," + y + "i)+(" + u + "," + v + "i)";
         }
 
-        static void divFunction()
+        static void divFunction(string x, string y, string u, string v, string s)
         {
-
+            standardDisplay();
+            Console.Write("What is x? ");
+            x = Console.ReadLine();
+            Console.Write("What is y? ");
+            y = Console.ReadLine();
+            Console.Write("What is u? ");
+            u = Console.ReadLine();
+            Console.Write("What is v? ");
+            v = Console.ReadLine();
         }
 
-        static void magFunction()
+        static void magFunction(string x, string y, string u, string v, string s)
         {
-
+            standardDisplay();
+            Console.Write("What is x? ");
+            x = Console.ReadLine();
+            Console.Write("What is y? ");
+            y = Console.ReadLine();
+            Console.Write("What is u? ");
+            u = Console.ReadLine();
+            Console.Write("What is v? ");
+            v = Console.ReadLine();
         }
 
-        static void angFunction()
+        static void angFunction(string x, string y, string u, string v, string s)
         {
+            standardDisplay();
+            Console.Write("What is x? ");
+            x = Console.ReadLine();
+            Console.Write("What is y? ");
+            y = Console.ReadLine();
+            Console.Write("What is u? ");
+            u = Console.ReadLine();
+            Console.Write("What is v? ");
+            v = Console.ReadLine();
+        }
 
+        static void standardDisplay()
+        {
+            Console.WriteLine("First Complex Number: x+yi");
+            Console.WriteLine("Second Complex Number: u+vi");
         }
     }
 }
