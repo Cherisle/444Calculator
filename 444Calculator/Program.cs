@@ -51,29 +51,35 @@ namespace _444Calculator
             x = Console.ReadLine();
             Console.Write("What is y? ");
             y = Console.ReadLine();
+            if (y.Contains("^")) { y = simplify(y); }
             Console.Write("What is u? ");
             u = Console.ReadLine();
             Console.Write("What is v? ");
             v = Console.ReadLine();
+            if(v.Contains("^")) { v = simplify(v); }
             s = "(" + x + "," + y + "i)+(" + u + "," + v + "i)";
-            //Console.WriteLine(s);
+            Console.WriteLine(s);
             if (s.Contains("i"))
             {
                 string[] sSubString = s.Split(',');
-                // [0] = (x
-                // [1] = yi)+(u
-                // [2] = vi)
+                // sSubString[0] = (x
+                // sSubString[1] = yi)+(u
+                // sSubString[2] = vi)
                 sSubString[0] = sSubString[0].Trim('(');
                 sSubString[2] = sSubString[2].Trim(')');
-                // [0] = x
-                // [2] = vi             
+                // sSubString[0] = x [updated]
+                // sSubString[2] = vi [updated]          
                 string[] loc1SubString = sSubString[1].Split(new[] { ")+(" }, StringSplitOptions.None);
-                // [0] = yi
-                // [1] = u
-                Console.WriteLine(sSubString[0]);
+                // loc1SubString[0] = yi
+                // loc1SubString[1] = u
+                /*Console.WriteLine(sSubString[0]);
                 Console.WriteLine(loc1SubString[0]);
                 Console.WriteLine(loc1SubString[1]);
-                Console.WriteLine(sSubString[2]);
+                Console.WriteLine(sSubString[2]);*/
+                y = loc1SubString[0] = simplify(loc1SubString[0]);
+                v = sSubString[2] = simplify(sSubString[2]);
+                s = "(" + x + "," + y + ")+(" + u + "," + v + ")";
+                Console.WriteLine(s);
             }            
         }
 
@@ -120,6 +126,34 @@ namespace _444Calculator
         {
             Console.WriteLine("First Complex Number: x+yi");
             Console.WriteLine("Second Complex Number: u+vi");
+        }
+
+        static string simplify(string s)
+        {
+            if(s.Contains("^"))
+            {
+                string[] token = s.Split('^');
+                int powerCnt = Convert.ToInt32(token[1]);
+                if(powerCnt % 4 == 0) { s = token[0].Trim('i'); } // follows i^0,i^4 ==> 1
+                if (powerCnt % 4 == 1) { s = token[0]; } // follows i^1, i^5 ==> i
+                if (powerCnt % 4 == 2) { s = "-" + token[0].Trim('i'); } // follows i^2, i^6 ==> -1
+                if (powerCnt % 4 == 3) { s = "-" + token[0]; } // follows i^3, i^7 ==> -i
+                return s;
+            }
+            else
+            {
+                int imaginaries = 0;
+                for (int ii=0; ii<s.Length; ii++)
+                {
+                    if(s[ii].Equals('i')) { imaginaries++; }
+                }
+                s = s.Trim('i');
+                if (imaginaries % 4 == 1) { s = s + "i"; }
+                if (imaginaries % 4 == 2) { s = "-" + s; }
+                if (imaginaries % 4 == 3) { s = "-" + s + "i"; }
+                Console.WriteLine("Testing: " + s);
+                return s;
+            }
         }
     }
 }
