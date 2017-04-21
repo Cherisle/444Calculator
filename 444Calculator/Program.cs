@@ -49,38 +49,21 @@ namespace _444Calculator
             standardDisplay();
             Console.Write("What is x? ");
             x = Console.ReadLine();
+            if(x.Contains("^")) { x = "(" + x + ")"; }
             Console.Write("What is y? ");
             y = Console.ReadLine();
-            if (y.Contains("^")) { y = simplify(y); }
+            if (y.Contains("^")) { y = "(" + y + ")"; }
             Console.Write("What is u? ");
             u = Console.ReadLine();
+            if (u.Contains("^")) { u = "(" + u + ")"; }
             Console.Write("What is v? ");
             v = Console.ReadLine();
-            if(v.Contains("^")) { v = simplify(v); }
-            s = "(" + x + "," + y + "i)+(" + u + "," + v + "i)";
+            if (v.Contains("^")) { v = "(" + v + ")"; }
+            s = "[" + x + "," + y + "i]+[" + u + "," + v + "i]";
             Console.WriteLine(s);
-            if (s.Contains("i"))
-            {
-                string[] sSubString = s.Split(',');
-                // sSubString[0] = (x
-                // sSubString[1] = yi)+(u
-                // sSubString[2] = vi)
-                sSubString[0] = sSubString[0].Trim('(');
-                sSubString[2] = sSubString[2].Trim(')');
-                // sSubString[0] = x [updated]
-                // sSubString[2] = vi [updated]          
-                string[] loc1SubString = sSubString[1].Split(new[] { ")+(" }, StringSplitOptions.None);
-                // loc1SubString[0] = yi
-                // loc1SubString[1] = u
-                /*Console.WriteLine(sSubString[0]);
-                Console.WriteLine(loc1SubString[0]);
-                Console.WriteLine(loc1SubString[1]);
-                Console.WriteLine(sSubString[2]);*/
-                y = loc1SubString[0] = simplify(loc1SubString[0]);
-                v = sSubString[2] = simplify(sSubString[2]);
-                s = "(" + x + "," + y + ")+(" + u + "," + v + ")";
-                Console.WriteLine(s);
-            }            
+            // start to simplify here
+            x = simplify(x); y = simplify(y); u = simplify(u); v = simplify(v);
+            s = "[" + x + "," + y + "i]+[" + u + "," + v + "i]";
         }
 
         static void divFunction(string x, string y, string u, string v, string s)
@@ -132,17 +115,7 @@ namespace _444Calculator
         {
             if(s.Contains("^"))
             {
-                string[] token = s.Split('^');
-                int powerCnt = Convert.ToInt32(token[1]);
-                if (powerCnt % 4 == 0) { s = token[0]; } // follows i^0,i^4 ==> 1
-                if (powerCnt % 4 == 1) { s = token[0]; } // follows i^1, i^5 ==> i
-                if (powerCnt % 4 == 2) { s = "-" + token[0]; } // follows i^2, i^6 ==> -1
-                if (powerCnt % 4 == 3) { s = "-" + token[0]; } // follows i^3, i^7 ==> -i
-            }
-
-            if(s.Contains("0"))
-            {
-                s = "0";
+                //handle converting any powered numbers, bigintegers, etc.
             }
             return s;
         }
