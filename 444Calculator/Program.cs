@@ -134,26 +134,17 @@ namespace _444Calculator
             {
                 string[] token = s.Split('^');
                 int powerCnt = Convert.ToInt32(token[1]);
-                if(powerCnt % 4 == 0) { s = token[0].Trim('i'); } // follows i^0,i^4 ==> 1
+                if (powerCnt % 4 == 0) { s = token[0]; } // follows i^0,i^4 ==> 1
                 if (powerCnt % 4 == 1) { s = token[0]; } // follows i^1, i^5 ==> i
-                if (powerCnt % 4 == 2) { s = "-" + token[0].Trim('i'); } // follows i^2, i^6 ==> -1
+                if (powerCnt % 4 == 2) { s = "-" + token[0]; } // follows i^2, i^6 ==> -1
                 if (powerCnt % 4 == 3) { s = "-" + token[0]; } // follows i^3, i^7 ==> -i
-                return s;
             }
-            else
+
+            if(s.Contains("0"))
             {
-                int imaginaries = 0;
-                for (int ii=0; ii<s.Length; ii++)
-                {
-                    if(s[ii].Equals('i')) { imaginaries++; }
-                }
-                s = s.Trim('i');
-                if (imaginaries % 4 == 1) { s = s + "i"; }
-                if (imaginaries % 4 == 2) { s = "-" + s; }
-                if (imaginaries % 4 == 3) { s = "-" + s + "i"; }
-                Console.WriteLine("Testing: " + s);
-                return s;
+                s = "0";
             }
+            return s;
         }
     }
 }
