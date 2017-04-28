@@ -100,10 +100,12 @@ namespace _444Calculator
             x = Console.ReadLine();
             Console.Write("What is y? ");
             y = Console.ReadLine();
-            Console.Write("What is u? ");
-            u = Console.ReadLine();
-            Console.Write("What is v? ");
-            v = Console.ReadLine();
+
+            x = simplify(x); y = simplify(y);
+            s = "(|" + x + "+" + y + "i|)";
+            Console.WriteLine(s);
+
+            Console.WriteLine("Evaluated Result: {0}", evaluate(s));
         }
 
         static void angFunction(string x, string y, string u, string v, string s)
@@ -154,22 +156,51 @@ namespace _444Calculator
 
             if (equationContents.Contains("/"))
             {
-                string fraction1 = (((Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[5]))
+                double numerator1, numerator2, denominator1, denominator2 = 0;
+                string fraction1 = "";
+                string fraction2 = "";
+                numerator1 = ((Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[5]))
+                                   + (Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[6])));
+                denominator1 = ((Int32.Parse(equationContents[5]) * Int32.Parse(equationContents[5]))
+                                  + (Int32.Parse(equationContents[6]) * Int32.Parse(equationContents[6])));
+                numerator2 = ((Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[5]))
+                                   - (Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[6])));
+                denominator2 = ((Int32.Parse(equationContents[5]) * Int32.Parse(equationContents[5]))
+                                  + (Int32.Parse(equationContents[6]) * Int32.Parse(equationContents[6])));
+                if(denominator1 == 0 || denominator2 == 0)
+                {
+                    Console.WriteLine("Calculation cannot be done because you are dividing by 0");
+                }
+                else
+                {
+                    fraction1 = (numerator1 / denominator1).ToString();
+                    fraction2 = (numerator2 / denominator2).ToString();
+                    if (fraction2.Contains("-")) { s = "" + fraction1 + fraction2 + "i"; }
+                    else { s = "" + fraction1 + " + " + fraction2 + "i"; }
+
+                }
+                /*string fraction1 = (((Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[5]))
                                    + (Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[6])))
                                    / ((Int32.Parse(equationContents[5])*Int32.Parse(equationContents[5]))
                                   + (Int32.Parse(equationContents[6])*Int32.Parse(equationContents[6])))).ToString();
+              
                                     // SHOULD REPRESENT (xu+yv)/(u^2 + v^2)
+
                 string fraction2 = (((Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[5]))
                                    - (Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[6])))
                                    / ((Int32.Parse(equationContents[5]) * Int32.Parse(equationContents[5]))
                                   + (Int32.Parse(equationContents[6]) * Int32.Parse(equationContents[6])))).ToString();
-                                    // SHOULD REPRESENT (yu-vx)/(u^2 + v^2)
-
-                if (fraction2.Contains("-")) { s = "" + fraction1 + fraction2 + "i"; }
-                else { s = "" + fraction1 + " + " + fraction2 + "i"; }
+                                    // SHOULD REPRESENT (yu-vx)/(u^2 + v^2)*/
             }
 
-            if (equationContents.Contains("|")) { }
+            if (equationContents.Contains("|"))
+            {
+                char[] secondParse = {'+','-','|','i',')','('};
+                equationContents = s.Split(secondParse);
+                string magEquation = Math.Pow(
+                    (Math.Pow(Int32.Parse(equationContents[2]),2)+Math.Pow(Int32.Parse(equationContents[3]),2))
+                    , 0.5).ToString();
+            }
 
             if (equationContents.Contains("ang")) { }
             return s;
