@@ -50,20 +50,24 @@ namespace _444Calculator
             Console.Write("What is x? ");
             x = Console.ReadLine();
             if(x.Contains("^")) { x = "(" + x + ")"; }
+
             Console.Write("What is y? ");
             y = Console.ReadLine();
             if (y.Contains("^")) { y = "(" + y + ")"; }
+
             Console.Write("What is u? ");
             u = Console.ReadLine();
             if (u.Contains("^")) { u = "(" + u + ")"; }
+
             Console.Write("What is v? ");
             v = Console.ReadLine();
             if (v.Contains("^")) { v = "(" + v + ")"; }
-            s = "[" + x + "," + y + "i]+[" + u + "," + v + "i]";
-            Console.WriteLine(s);
+
             // start to simplify here
+
             x = simplify(x); y = simplify(y); u = simplify(u); v = simplify(v);
             s = "[" + x + "," + y + "i]+[" + u + "," + v + "i]";
+            Console.WriteLine(s);
         }
 
         static void divFunction(string x, string y, string u, string v, string s)
@@ -115,7 +119,13 @@ namespace _444Calculator
         {
             if(s.Contains("^"))
             {
-                //handle converting any powered numbers, bigintegers, etc.
+                char[] powerDelims = { ' ', '(', ')', '^'};
+                string[] powerContents = s.Split(powerDelims);
+
+                double baseNum = Int32.Parse(powerContents[1]);
+                double powerNum = Int32.Parse(powerContents[2]);
+
+                s = Math.Pow(baseNum, powerNum).ToString();
             }
             return s;
         }
