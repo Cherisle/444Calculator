@@ -68,6 +68,8 @@ namespace _444Calculator
             x = simplify(x); y = simplify(y); u = simplify(u); v = simplify(v);
             s = "[" + x + "," + y + "i]+[" + u + "," + v + "i]";
             Console.WriteLine(s);
+
+            Console.WriteLine("Evaluated Result: {0}", evaluate(s));
         }
 
         static void divFunction(string x, string y, string u, string v, string s)
@@ -127,6 +129,26 @@ namespace _444Calculator
 
                 s = Math.Pow(baseNum, powerNum).ToString();
             }
+            return s;
+        }
+
+        static string evaluate(string s)
+        {
+            char[] equationDelims = { '[', ']', '(', ')', ',', 'i' };
+            string[] equationContents = s.Split(equationDelims);
+            if (equationContents.Contains("+"))
+            {
+                string realNums = (Int32.Parse(equationContents[1]) + Int32.Parse(equationContents[2])).ToString();
+                string imaginaryNums = (Int32.Parse(equationContents[5]) + Int32.Parse(equationContents[6])).ToString();
+
+                s = "" + realNums + " + " + imaginaryNums + "i";
+            }
+
+            if (equationContents.Contains("/")) { }
+
+            if (equationContents.Contains("|")) { }
+
+            if (equationContents.Contains("ang")) { }
             return s;
         }
     }
