@@ -156,28 +156,25 @@ namespace _444Calculator
 
             if (equationContents.Contains("/"))
             {
-                double numerator1, numerator2, denominator1, denominator2 = 0;
+                double numerator1, numerator2, denominator = 0;
                 string fraction1 = "";
                 string fraction2 = "";
                 numerator1 = ((Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[5]))
-                                   + (Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[6])));
-                denominator1 = ((Int32.Parse(equationContents[5]) * Int32.Parse(equationContents[5]))
-                                  + (Int32.Parse(equationContents[6]) * Int32.Parse(equationContents[6])));
+                                   + (Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[6])));            
                 numerator2 = ((Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[5]))
                                    - (Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[6])));
-                denominator2 = ((Int32.Parse(equationContents[5]) * Int32.Parse(equationContents[5]))
+                denominator = ((Int32.Parse(equationContents[5]) * Int32.Parse(equationContents[5]))
                                   + (Int32.Parse(equationContents[6]) * Int32.Parse(equationContents[6])));
-                if(denominator1 == 0 || denominator2 == 0)
+                if (denominator == 0)
                 {
                     Console.WriteLine("Calculation cannot be done because you are dividing by 0");
                 }
                 else
                 {
-                    fraction1 = (numerator1 / denominator1).ToString();
-                    fraction2 = (numerator2 / denominator2).ToString();
+                    fraction1 = (numerator1 / denominator).ToString();
+                    fraction2 = (numerator2 / denominator).ToString();
                     if (fraction2.Contains("-")) { s = "" + fraction1 + fraction2 + "i"; }
                     else { s = "" + fraction1 + " + " + fraction2 + "i"; }
-
                 }
                 /*string fraction1 = (((Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[5]))
                                    + (Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[6])))
