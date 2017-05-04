@@ -192,11 +192,13 @@ namespace _444Calculator
 
             if (equationContents.Contains("|"))
             {
-                char[] secondParse = {'+','-','|','i',')','('};
+                char[] secondParse = {'+','-','|',')','('};
                 equationContents = s.Split(secondParse);
                 string magEquation = Math.Pow(
-                    (Math.Pow(Int32.Parse(equationContents[2]),2)+Math.Pow(Int32.Parse(equationContents[3]),2))
-                    , 0.5).ToString();
+                    Math.Abs(
+                        (Math.Pow(Int32.Parse(equationContents[2]),2)+((-1)*Math.Pow(Int32.Parse(equationContents[3]),2)))
+                        )
+                    , 0.5).ToString();      
             }
 
             if (equationContents.Contains("ang")) { }
