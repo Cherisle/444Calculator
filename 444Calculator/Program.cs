@@ -21,7 +21,7 @@ namespace _444Calculator
                 Console.WriteLine("add\ndiv\nmag\nang\n");
                 Console.WriteLine("Enter anything else to quit.");
                 menuChoice = Console.ReadLine();
-                Console.WriteLine(menuChoice);
+                //Console.WriteLine(menuChoice);
                 switch(menuChoice)
                 {
                     case "add":
@@ -41,7 +41,6 @@ namespace _444Calculator
                         break;              
                 }
             }
-            Console.ReadKey();
         }
 
         static void addFunction(string x, string y, string u, string v, string s)
@@ -192,13 +191,13 @@ namespace _444Calculator
 
             if (equationContents.Contains("|"))
             {
-                char[] secondParse = {'+','-','|',')','('};
+                char[] secondParse = {'+','-','|',')','('};                
                 equationContents = s.Split(secondParse);
-                string magEquation = Math.Pow(
-                    Math.Abs(
-                        (Math.Pow(Int32.Parse(equationContents[2]),2)+((-1)*Math.Pow(Int32.Parse(equationContents[3]),2)))
-                        )
-                    , 0.5).ToString();      
+                equationContents[3] = equationContents[3].Trim('i');
+                Console.WriteLine(equationContents[2] + "\n" + equationContents[3]);
+                double magVal = Math.Pow((Math.Pow(Int32.Parse(equationContents[2]),2) +
+                                Math.Pow(Int32.Parse(equationContents[3]),2)),0.5);
+                Console.WriteLine(magVal);
             }
 
             if (equationContents.Contains("ang")) { }
