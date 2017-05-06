@@ -114,10 +114,14 @@ namespace _444Calculator
             x = Console.ReadLine();
             Console.Write("What is y? ");
             y = Console.ReadLine();
-            Console.Write("What is u? ");
-            u = Console.ReadLine();
-            Console.Write("What is v? ");
-            v = Console.ReadLine();
+            x = simplify(x); y = simplify(y);
+            s = "ang(" + y + "/" + x + ")";
+            Console.WriteLine(s);
+            Console.WriteLine("Evaluated Result: {0}", evaluate(s));
+            double radians = Math.Atan2(Int32.Parse(y), Int32.Parse(x));
+            double angle = radians * (180 / Math.PI);
+
+
         }
 
         static void standardDisplay()
@@ -153,7 +157,7 @@ namespace _444Calculator
                 s = "" + realNums + " + " + imaginaryNums + "i";
             }
 
-            if (equationContents.Contains("/"))
+            if (equationContents.Contains("/") && !equationContents.Contains("ang"))
             {
                 double numerator1, numerator2, denominator = 0;
                 string fraction1 = "";
@@ -200,7 +204,10 @@ namespace _444Calculator
                 Console.WriteLine(magVal);
             }
 
-            if (equationContents.Contains("ang")) { }
+            if (equationContents.Contains("ang"))
+            {
+                // how would you add ang to the delims? Continue from here
+            }
             return s;
         }
     }
