@@ -115,7 +115,7 @@ namespace _444Calculator
             Console.Write("What is y? ");
             y = Console.ReadLine();
             x = simplify(x); y = simplify(y);
-            s = "ang(" + y + "/" + x + ")";
+            s = "ang(" + y + "/" + x + "i)";
             Console.WriteLine(s);
             Console.WriteLine("Evaluated Result: {0}", evaluate(s));
             double radians = Math.Atan2(Int32.Parse(y), Int32.Parse(x));
@@ -201,12 +201,17 @@ namespace _444Calculator
                 Console.WriteLine(equationContents[2] + "\n" + equationContents[3]);
                 double magVal = Math.Pow((Math.Pow(Int32.Parse(equationContents[2]),2) +
                                 Math.Pow(Int32.Parse(equationContents[3]),2)),0.5);
-                Console.WriteLine(magVal);
+                s = "" + magVal;
             }
 
             if (equationContents.Contains("ang"))
             {
-                // how would you add ang to the delims? Continue from here
+                char[] angParse = { 'a','n','g','(','/',')','i' };
+                equationContents = s.Split(angParse);
+
+                double radians = Math.Atan2(Int32.Parse(equationContents[4]), Int32.Parse(equationContents[5]));
+                s = "" + radians;
+               
             }
             return s;
         }
