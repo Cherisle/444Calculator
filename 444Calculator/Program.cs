@@ -117,10 +117,7 @@ namespace _444Calculator
             x = simplify(x); y = simplify(y);
             s = "ang(" + y + "/" + x + "i)";
             Console.WriteLine(s);
-            Console.WriteLine("Evaluated Result: {0}", evaluate(s));
-            double radians = Math.Atan2(Int32.Parse(y), Int32.Parse(x));
-            double angle = radians * (180 / Math.PI);
-
+            Console.WriteLine("Evaluated Result in radians: {0}", evaluate(s));
 
         }
 
@@ -204,8 +201,9 @@ namespace _444Calculator
                 equationContents = s.Split(angParse);
 
                 double radians = Math.Atan2(Int32.Parse(equationContents[4]), Int32.Parse(equationContents[5]));
+                double angle = radians * (180 / Math.PI);
+                Console.WriteLine("Evaluated Result in degrees: {0}", angle);
                 s = "" + radians;
-               
             }
             return s;
         }
