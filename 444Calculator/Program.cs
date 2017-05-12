@@ -94,7 +94,7 @@ namespace _444Calculator
 
         static void magFunction(string x, string y, string u, string v, string s)
         {
-            standardDisplay();
+            displayForOneEquation();
             Console.Write("What is x? ");
             x = Console.ReadLine();
             Console.Write("What is y? ");
@@ -109,7 +109,7 @@ namespace _444Calculator
 
         static void angFunction(string x, string y, string u, string v, string s)
         {
-            standardDisplay();
+            displayForOneEquation();
             Console.Write("What is x? ");
             x = Console.ReadLine();
             Console.Write("What is y? ");
@@ -128,6 +128,11 @@ namespace _444Calculator
         {
             Console.WriteLine("First Complex Number: x+yi");
             Console.WriteLine("Second Complex Number: u+vi");
+        }
+
+        static void displayForOneEquation()
+        {
+            Console.WriteLine("First Complex Number: x+yi");
         }
 
         static string simplify(string s)
@@ -179,18 +184,7 @@ namespace _444Calculator
                     if (fraction2.Contains("-")) { s = "" + fraction1 + fraction2 + "i"; }
                     else { s = "" + fraction1 + " + " + fraction2 + "i"; }
                 }
-                /*string fraction1 = (((Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[5]))
-                                   + (Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[6])))
-                                   / ((Int32.Parse(equationContents[5])*Int32.Parse(equationContents[5]))
-                                  + (Int32.Parse(equationContents[6])*Int32.Parse(equationContents[6])))).ToString();
-              
-                                    // SHOULD REPRESENT (xu+yv)/(u^2 + v^2)
-
-                string fraction2 = (((Int32.Parse(equationContents[2]) * Int32.Parse(equationContents[5]))
-                                   - (Int32.Parse(equationContents[1]) * Int32.Parse(equationContents[6])))
-                                   / ((Int32.Parse(equationContents[5]) * Int32.Parse(equationContents[5]))
-                                  + (Int32.Parse(equationContents[6]) * Int32.Parse(equationContents[6])))).ToString();
-                                    // SHOULD REPRESENT (yu-vx)/(u^2 + v^2)*/
+            
             }
 
             if (equationContents.Contains("|"))
