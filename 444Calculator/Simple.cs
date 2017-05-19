@@ -11,14 +11,17 @@ namespace _444Calculator
     {
         public void Simple_Calculator()
         {
+            //Creation of variables to be used later
             string equation = "";
             char[] delimiters = { ' ' };
             string[] calculations;
 
+            //User input and prompting
             Console.WriteLine("Enter in a mathematical equation to be computed.");
             Console.WriteLine("For the options, you can enter 'help'.");
             equation = Console.ReadLine();
 
+            //Condition to check if the equation has a + symbol.  If it does, do the addition operation
             if (equation.Contains("+"))
             {
                 char[] additionDelim = { '+' };
@@ -32,6 +35,7 @@ namespace _444Calculator
                 Console.WriteLine("Sum of {0}: {1}", equation, sum);
             }
 
+            //Condition to check if the equation has a - symbol.  If it does, do the subtraction operation
             if (equation.Contains("-") && !equation.Contains("^") && !equation.Contains("!"))
             {
                 char[] subtractionDelim = { '-' };
@@ -45,9 +49,11 @@ namespace _444Calculator
                 Console.WriteLine("Difference of {0}: {1}", equation, difference);
             }
 
+            //Condition to check if the equation the phrase equal.  If it does, do either a is not equal to or equal to
             if (equation.Contains("equal"))
             {
                 calculations = equation.Split(delimiters);
+                //Checks if there is the phrase not.  if there is, do is not equal to
                 if (equation.Contains("not"))
                 {
                     if (Int32.Parse(calculations[0]) != Int32.Parse(calculations[5]))
@@ -116,6 +122,8 @@ namespace _444Calculator
                     else
                         Console.WriteLine("Is {0}?: false", equation);
                 }
+
+                //Else, just do an equal to operation
                 else
                 {
                     if (Int32.Parse(calculations[0]) == Int32.Parse(calculations[4]))
@@ -125,6 +133,7 @@ namespace _444Calculator
                 }
             }
 
+            //Condition to check if the equation has a / symbol.  If it does, do the division operation
             if (equation.Contains("/") && !equation.Contains("equal") && !equation.Contains("^"))
             {
                 char[] divisionDelim = { '/' };
@@ -135,7 +144,17 @@ namespace _444Calculator
                 Console.WriteLine("Whole Number quotient of {0}: {1}", equation, quotient);
             }
 
-            if(equation.Contains("and") && !equation.Contains("r"))
+            //Condition to check if the equation has a * symbol.  If it does, do the multiplication operation
+            if (equation.Contains("*"))
+            {
+                char[] multiDelim = { '*' };
+                calculations = equation.Split(multiDelim);
+                double product = (Double.Parse(calculations[0]) % Double.Parse(calculations[1]));
+                Console.WriteLine("Product of {0}: {1}", equation, product);
+            }
+
+            //Condition to check if the equation has the phrase and.  If it does, compare both numbers and return the larger
+            if (equation.Contains("and") && !equation.Contains("r"))
             {
                 calculations = equation.Split(new[] { " and " }, StringSplitOptions.None);
                 double token1 = Double.Parse(simplify(calculations[0]));
@@ -143,7 +162,8 @@ namespace _444Calculator
                 Console.WriteLine("Greater value between {0} and {1}: {2}",token1,token2,Math.Max(token1, token2));
             }
 
-            if(equation.Contains("random value between"))
+            //Condition to check if the equation has the phrase random value between.  If it does, generate a random value between the two
+            if (equation.Contains("random value between"))
             {
                 char[] commaDelim = { ',' };
                 calculations = equation.Split(new[] { "random value between " }, StringSplitOptions.None);
@@ -153,15 +173,18 @@ namespace _444Calculator
                     bounds[0], bounds[1], rand.Next(Int32.Parse(bounds[0]),Int32.Parse(bounds[1])));
             }
 
-            if(equation.Contains("^") && !equation.Contains("equal"))
+            //Condition to check if the equation has a ^ symbol.  If it does, take the power of the number
+            if (equation.Contains("^") && !equation.Contains("equal"))
             {
                 Console.WriteLine("Value of {0}, {1}",equation,simplify(equation));
             }
 
+            //Condition to check if the equation has a ! symbol.  If it does, take the factorial of the number
             if (equation.Contains("!"))
             {
                 char[] factorialDelim = { '!' };
                 calculations = equation.Split(factorialDelim);
+
                 BigInteger factorial = 1;
                 for(int i= Int32.Parse(calculations[0]); i > 0; i--)
                 {
@@ -170,8 +193,17 @@ namespace _444Calculator
 
                 Console.WriteLine("Factorial value of {0}: {1}", calculations[0], factorial);
             }
+
+            //Gives the user menu options
+            if (equation.Contains("help"))
+            {
+                Console.WriteLine("Here are your options:");
+                Console.WriteLine("'x equal to y'\n'x is not equal to y'\n'x!'\n'x^y'\n'random value between x,y'\n'x and y (this is for comparisons)'");
+                Console.WriteLine("Also, you can enter any basic math operation such as addition and subtraction\n");
+            }
         }
 
+        //Simplifies the ^ symbol to do the power operation
         string simplify(string s)
         {
             if (s.Contains("^"))

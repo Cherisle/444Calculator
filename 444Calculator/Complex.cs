@@ -14,6 +14,8 @@ namespace _444Calculator
             string menuChoice = "";
             string x, y, u, v, s;
             x = y = u = v = s = "";
+
+            //Menu selection
             Console.WriteLine("This is the 444 Simple Complex Number Calculator.");
             Console.WriteLine("What would you like to do?(Options are case-sensitive)\n");
             while (!complexMenuDone)
@@ -43,6 +45,7 @@ namespace _444Calculator
             }
         }
 
+        //Will do the add function of complex numbers
         static void addFunction(string x, string y, string u, string v, string s)
         {
             standardDisplay();
@@ -71,6 +74,7 @@ namespace _444Calculator
             Console.WriteLine("Evaluated Result: {0}", evaluate(s));
         }
 
+        //Divides two equations with complex numbers within them
         static void divFunction(string x, string y, string u, string v, string s)
         {
             standardDisplay();
@@ -92,6 +96,7 @@ namespace _444Calculator
             Console.WriteLine("Evaluated Result: {0}", evaluate(s));
         }
 
+        //Does the magnitude function
         static void magFunction(string x, string y, string u, string v, string s)
         {
             displayForOneEquation();
@@ -107,6 +112,7 @@ namespace _444Calculator
             Console.WriteLine("Evaluated Result: {0}", evaluate(s));
         }
 
+        //Takes the inverse tangent of an equation
         static void angFunction(string x, string y, string u, string v, string s)
         {
             displayForOneEquation();
@@ -147,10 +153,13 @@ namespace _444Calculator
             return s;
         }
 
+        //Function that evaluates and delimits based on the symbols within the equation 
         static string evaluate(string s)
         {
             char[] equationDelims = { '[', ']', '(', ')', ',', 'i' };
             string[] equationContents = s.Split(equationDelims);
+
+            //Addition operation - Kyle Ho
             if (equationContents.Contains("+"))
             {
                 string realNums = (Int32.Parse(equationContents[1]) + Int32.Parse(equationContents[5])).ToString();
@@ -159,6 +168,7 @@ namespace _444Calculator
                 s = "" + realNums + " + " + imaginaryNums + "i";
             }
 
+            //Division operation - Kyle Ho
             if (equationContents.Contains("/") && !equationContents.Contains("ang"))
             {
                 double numerator1, numerator2, denominator = 0;
@@ -184,6 +194,7 @@ namespace _444Calculator
 
             }
 
+            //Magnitude function - Kyle Ho
             if (equationContents.Contains("|"))
             {
                 char[] secondParse = { '+', '-', '|', ')', '(' };
