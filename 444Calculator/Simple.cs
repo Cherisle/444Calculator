@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,7 +32,7 @@ namespace _444Calculator
                 Console.WriteLine("Sum of {0}: {1}", equation, sum);
             }
 
-            if (equation.Contains("-") && !equation.Contains("^"))
+            if (equation.Contains("-") && !equation.Contains("^") && !equation.Contains("!"))
             {
                 char[] subtractionDelim = { '-' };
                 calculations = equation.Split(subtractionDelim);
@@ -155,6 +156,19 @@ namespace _444Calculator
             if(equation.Contains("^") && !equation.Contains("equal"))
             {
                 Console.WriteLine("Value of {0}, {1}",equation,simplify(equation));
+            }
+
+            if (equation.Contains("!"))
+            {
+                char[] factorialDelim = { '!' };
+                calculations = equation.Split(factorialDelim);
+                BigInteger factorial = 1;
+                for(int i= Int32.Parse(calculations[0]); i > 0; i--)
+                {
+                    factorial = BigInteger.Multiply(factorial,i);
+                }
+
+                Console.WriteLine("Factorial value of {0}: {1}", calculations[0], factorial);
             }
         }
 
