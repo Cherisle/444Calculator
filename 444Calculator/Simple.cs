@@ -66,7 +66,7 @@ namespace _444Calculator
                     char[] delims = {' '};
                     calculations = equation.Split(delims);
                     string pemdasSolveP = ""; // pemdas solve parenthesis
-                    string outsideParenthesis = "";
+                    string outsideParenthesis = ""; // contents outside the parentheses
                     foreach (var el in calculations)
                     {
                         if(el.Contains("(") || el.Contains(")"))
@@ -86,7 +86,7 @@ namespace _444Calculator
                     }
                     char[] delims2 = {'^'}; // delim by ^ to isolate exponented value
                     string [] calculations3 = pemdasSolveP.Split(delims2);
-                    char[] delims3 = { '*', '/', '+', '-' };
+                    char[] delims3 = { '*', '/', '+', '-' }; // delim by operator signs to perform
                     string[] calculations4 = calculations3[0].Split(delims3);
                     string pemdasSolveE = calculations4[1] +  "^"; //solving for E in pemdas
                     double solved = 0;
@@ -98,19 +98,19 @@ namespace _444Calculator
                         pemdasSolveE = pemdasSolveE + decimalResult;
                     }                  
                     pemdasSolveE = simplify(pemdasSolveE); // solved E, case back into pemdasP
-                    if (pemdasSolveP.Contains("*"))
+                    if (pemdasSolveP.Contains("*")) // detected multiplication, simplify before putting into method
                     {
                         solved = Double.Parse(calculations4[0]) * Double.Parse(pemdasSolveE);
                     }
-                    else if (pemdasSolveP.Contains("/"))
+                    else if (pemdasSolveP.Contains("/")) // detected division, simp before putting into method
                     {
                         solved = Double.Parse(calculations4[0]) / Double.Parse(pemdasSolveE);
                     }
-                    else if (pemdasSolveP.Contains("+"))
+                    else if (pemdasSolveP.Contains("+")) // detected addition, simp before putting into method
                     {
                         solved = Double.Parse(calculations4[0]) + Double.Parse(pemdasSolveE);
                     }
-                    else if (pemdasSolveP.Contains("-"))
+                    else if (pemdasSolveP.Contains("-")) // detected subtraction, simp before putting into method
                     {
                         solved = Double.Parse(calculations4[0]) - Double.Parse(pemdasSolveE);
                     }
