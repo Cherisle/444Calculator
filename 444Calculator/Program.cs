@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Michael Tran and Kyle Ho distributed the work evenly throughout the project.  
+/// Each person worked together on ALL aspects of the project
+/// </summary>
+
 namespace _444Calculator
 {
     class Program
