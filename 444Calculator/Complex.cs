@@ -15,7 +15,7 @@ namespace _444Calculator
             string x, y, u, v, s;
             x = y = u = v = s = "";
 
-            //Menu selection
+            //Menu selection - Kyle Ho & Michael Tran
             Console.WriteLine("This is the 444 Simple Complex Number Calculator.");
             Console.WriteLine("What would you like to do?(Options are case-sensitive)\n");
             while (!complexMenuDone)
@@ -45,7 +45,7 @@ namespace _444Calculator
             }
         }
 
-        //Will do the add function of complex numbers
+        //Will do the add function of complex numbers - Kyle Ho & Michael Tran
         static void addFunction(string x, string y, string u, string v, string s)
         {
             standardDisplay();
@@ -74,7 +74,7 @@ namespace _444Calculator
             Console.WriteLine("Evaluated Result: {0}", evaluate(s));
         }
 
-        //Divides two equations with complex numbers within them
+        //Divides two equations with complex numbers within them - Kyle Ho & Michael Tran
         static void divFunction(string x, string y, string u, string v, string s)
         {
             standardDisplay();
@@ -96,7 +96,7 @@ namespace _444Calculator
             Console.WriteLine("Evaluated Result: {0}", evaluate(s));
         }
 
-        //Does the magnitude function
+        //Does the magnitude function - Kyle Ho & Michael Tran
         static void magFunction(string x, string y, string u, string v, string s)
         {
             displayForOneEquation();
@@ -112,7 +112,7 @@ namespace _444Calculator
             Console.WriteLine("Evaluated Result: {0}", evaluate(s));
         }
 
-        //Takes the inverse tangent of an equation
+        //Takes the inverse tangent of an equation - Michael Tran
         static void angFunction(string x, string y, string u, string v, string s)
         {
             displayForOneEquation();
@@ -127,17 +127,20 @@ namespace _444Calculator
 
         }
 
+        // Displays to let user know what to input - Michael Tran
         static void standardDisplay()
         {
             Console.WriteLine("First Complex Number: x+yi");
             Console.WriteLine("Second Complex Number: u+vi");
         }
 
+        // Displays to let user know what to input - Kyle Ho
         static void displayForOneEquation()
         {
             Console.WriteLine("First Complex Number: x+yi");
         }
 
+        // Simplifies any number that includes exponent - Michael Tran
         static string simplify(string s)
         {
             if (s.Contains("^"))
@@ -206,6 +209,7 @@ namespace _444Calculator
                 s = "" + magVal;
             }
 
+            //Angle function - Michael Tran
             if (equationContents.Contains("ang"))
             {
                 char[] angParse = { 'a', 'n', 'g', '(', '/', ')', 'i' };

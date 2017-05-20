@@ -61,7 +61,7 @@ namespace _444Calculator
                     else
                         Console.WriteLine("{0}?: false", equation);
                 }
-                else if(equation.Contains("^"))
+                else if(equation.Contains("^")) // [Michael Tran]
                 {
                     char[] delims = {' '};
                     calculations = equation.Split(delims);
@@ -117,7 +117,7 @@ namespace _444Calculator
                     pemdasSolveP = solved.ToString();
                     string pemdasSolvePE = pemdasSolveP + outsideParenthesis;
                     pemdasSolvePE = simplify(pemdasSolvePE); // final answer
-                    if (Double.Parse(pemdasSolvePE) == Double.Parse(calculations[4]))
+                    if (Double.Parse(pemdasSolvePE) == Double.Parse(calculations[4])) // check true or false
                         Console.WriteLine("Is {0}?: true", equation);
                     else
                         Console.WriteLine("Is {0}?: false", equation);
@@ -203,7 +203,7 @@ namespace _444Calculator
             }
         }
 
-        //Simplifies the ^ symbol to do the power operation
+        //Simplifies the ^ symbol to do the power operation - Kyle Ho & Michael Tran
         string simplify(string s)
         {
             if (s.Contains("^"))
